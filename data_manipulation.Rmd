@@ -7,16 +7,23 @@ output: github.document
 library(tidyverse)
 ```
 
-```{r load data}
-options(tibble.print_min = 3)
+```{r, load data}
 
-litters_data = read_csv("./data_import_examples/FAS_litters.csv",
-  col_types = "ccddiiii")
+litters_data = read_csv("./data_import_examples/FAS_litters.csv")
 litters_data = janitor::clean_names(litters_data)
 
-pups_data = read_csv("./data_import_examples/FAS_pups.csv",
-  col_types = "ciiiii")
-pups_data = janitor::clean_names(pups_data)
+```
 
+##Selecting a subset of columns
+```{r}
+select(litters_data, group, litter_number, gd0_weight, pups_born_alive)
+```
+
+Helper functions with select()
+
+```{r}
+select(litters_data, starts_with("gd"))
+select(litters_data, ends_with("weight"))
+select(litters_data, litter_number, pups_survive, everything())
 ```
 
